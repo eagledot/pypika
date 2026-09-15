@@ -1202,10 +1202,6 @@ class QueryBuilder(Selectable, Term):
         Returns False if the term references a table not already part of the
         FROM clause or JOINS and True otherwise.
         """
-        if self.do_validation == False:
-            # NOTE: we bypass the checking for presence of a foreign_table, as it can already give false negatives and does minimal checks based on just `_joins` table.
-            # While adding a significant cost in query building. Only way to do exhaustive checks is somehow provide
-            return True
 
         base_tables = self._from + [self._update_table]
 
